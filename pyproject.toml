@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oceanborn"
+version = "0.1"
+description = "This package contains the relevant classes to plot unified and consistent within the OCEAN Squids group at IBM Research Zurich."
+authors = [
+  { name = "Sandro Agostini", email = "sandro.agostini@ibm.com" }
+]
+dependencies = [
+  "matplotlib",
+  "numpy",
+  "pandas",
+  "seaborn"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+exclude = ["tests*"]
+
+
+[tool.setuptools.package-data]
+"oceanborn.libdata" = ["colors.json"]
+
+

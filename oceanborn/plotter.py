@@ -31,7 +31,7 @@ class Plotter():
         self.dpi = 450
 
         self.legend_params = {
-            'labelspacing': 0.2,
+            'labelspacing': 0.25,
             'frameon': False,
             'handlelength': 1.5
         }
@@ -182,7 +182,6 @@ class Plotter():
             self._use_latex = False
         
         if self.use_latex:
-            matplotlib.use("Pgf")
 
             matplotlib.rcParams.update({
             "pgf.texsystem": "pdflatex",
@@ -197,8 +196,6 @@ class Plotter():
             """  # Latin Modern and other math packages
             })
         
-        else:
-            matplotlib.use("Agg")
 
         matplotlib.rcParams.update({
             'axes.prop_cycle': self.custom_cycler,

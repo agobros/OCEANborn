@@ -92,7 +92,7 @@ def test_markers():
         for idx, marker in enumerate(p.markers):
             x = np.array((range(-10,10)))*10 # type: ignore
             y = [-4*idx+np.sin(i)+np.exp(np.abs(i)*1e-2) for i in x]
-            label = f'Marker {marker}'
+            label = f'Marker {idx}'
             plt.plot(x, y,f'--{marker}',label=label)
         plt.legend(loc=7)
         plt.xlim((-100,250))

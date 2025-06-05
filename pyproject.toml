@@ -16,15 +16,12 @@ dependencies = [
   "seaborn"
 ]
 
+[tool.setuptools]
+include-package-data = true
+
 [tool.setuptools.packages.find]
 where = ["."]
-
-[tool.setuptools]
-include-package-data = false
-
-[tool.setuptools.packages.find]
 exclude = ["tests*"]
-
 
 [tool.setuptools.package-data]
 "oceanborn.libdata" = ["colors.json"]

@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: oceanborn
+Version: 0.1
+Summary: This package contains the relevant classes to plot unified and consistent within the OCEAN Squids group at IBM Research Zurich.
+Author-email: Sandro Agostini <sandro.agostini@ibm.com>
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: seaborn

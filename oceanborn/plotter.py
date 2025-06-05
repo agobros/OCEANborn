@@ -9,8 +9,6 @@ from matplotlib.axes import Axes
 from numpy.typing import NDArray
 import numpy as np
 
-from oceanborn import _lib
-
 
 class Plotter():
     def __init__(self):
@@ -72,8 +70,8 @@ class Plotter():
             raise TypeError(f'Provide a bool for use_latex and not {new_val}!')
         self.update_plt_params()
 
-    def get_colors(self) -> None:
-        with resources.files(_lib).joinpath("colors.json").open("r", encoding="utf-8") as f:
+    def get_colors(self) -> None:        
+        with open(os.path.join(".","oceanborn","colors.json"), 'r', encoding="utf-8") as f:
             self.colors = json.load(f) 
             #Dict with all colors
 

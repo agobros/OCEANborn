@@ -1,5 +1,6 @@
 from oceanborn import Plotter
 import os
+import numpy as np
 
 #instantiation of plotter instance sets the matplotlib params globally
 ocean_plt=Plotter()
@@ -8,7 +9,12 @@ ocean_plt=Plotter()
 fig, ax = ocean_plt.genfig()
 
 #fig and ax can either be accessed directly or with the class properties
-ocean_plt.ax.plot([0,1,1,0,0], [0,0,1,1,0])
+x = np.array([-0.5,0.5,0.5,-0.5,-0.5])
+y = np.array([-0.5,-0.5,0.5,0.5,-0.5])
+
+for i in range(18):
+    ocean_plt.ax.plot((2-i/20)*x,(2-i/20)*y)
+ocean_plt.ax.text(0.,0.,'OCEAN\nborn',horizontalalignment='center',verticalalignment='center', fontsize=25.)
 
 #If saved via the method savefig, there exists a possiblity of saving a dict as json
 #and a str as txt file if the properties save_dict and save_txt are not empty
@@ -20,6 +26,7 @@ ocean_plt.saving_dir = os.getcwd()
 
 #The method savfig takes the figure name as argument, if empty, the figure will have a default name!
 ocean_plt.savefig('Test')
+
 
 #There are shades of grey provided in the class
 print(f'Greys: {", ".join(ocean_plt.greys)}')

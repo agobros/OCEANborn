@@ -159,7 +159,7 @@ class Plotter():
         plt.savefig(fn+'.png')
 
         if self.print_infos:
-            print(f'Figures saves as: {fn}')
+            print(f'Figures saved as: {fn}')
 
         self.reset()
 

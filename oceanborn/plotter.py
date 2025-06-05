@@ -71,9 +71,34 @@ class Plotter():
         self.update_plt_params()
 
     def get_colors(self) -> None:        
-        with open(os.path.join(".","oceanborn","colors.json"), 'r', encoding="utf-8") as f:
-            self.colors = json.load(f) 
-            #Dict with all colors
+        self.colors={
+                    "cycler": [
+                        "#4169E1",
+                        "#66CC66",
+                        "#fc6600",
+                        "#CC0033",
+                        "#be29ec",
+                        "#ff00a9",
+                        "#006600"
+                    ],
+                    "vline": "#E7D27C",
+                    "hline": "#CC9999",
+                    "greys": [
+                        "#F5F5F5",
+                        "#DCDCDC",
+                        "#D3D3D3", 
+                        "#C0C0C0", 
+                        "#A9A9A9", 
+                        "#808080", 
+                        "#696969", 
+                        "#778899", 
+                        "#708090", 
+                        "#2F4F4F", 
+                        "#343434", 
+                        "#36454F", 
+                        "#353839", 
+                        "#000000"]
+                    }
 
         self.color_palette = self.colors['cycler'] #For cycler
         #http://medialab.github.io/iwanthue/

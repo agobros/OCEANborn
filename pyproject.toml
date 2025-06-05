@@ -23,7 +23,5 @@ include-package-data = true
 where = ["."]
 exclude = ["tests*"]
 
-[tool.setuptools.package-data]
-"oceanborn.libdata" = ["colors.json"]
 
 

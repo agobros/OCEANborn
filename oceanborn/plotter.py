@@ -124,26 +124,25 @@ class Plotter():
         fn = fn.replace('.', '_') #Check for .
 
         loc_fn = copy.deepcopy(fn)
-        name_len_issues = False
-        while True:
+
+        counter = 0
+
+        final_dir = os.path.join(self.saving_dir, loc_fn)
+
+        try:
+            os.makedirs(final_dir, exist_ok=True)
+        except FileNotFoundError:
+            while os.path.exists(os.path.join(self.saving_dir, loc_fn)):
+                loc_fn = f'figure_{counter}'
+                counter += 1
+
             final_dir = os.path.join(self.saving_dir, loc_fn)
-            try:
-                os.makedirs(final_dir, exist_ok=True)
-            except FileNotFoundError:
-                name_len_issues = True
-                if len(loc_fn) > 3:
-                    loc_fn = loc_fn[:len(loc_fn)-1]
-                else:
-                    raise MemoryError(f'Was not able to save the figure as \n{os.path.join(self.saving_dir, fn)} \n(probably due to length restrictions in the name)')
-            else:
-                if name_len_issues:
-                    with open(os.path.join(final_dir, 'info.txt'), 'w') as txt_file:
-                        txt_file.write(f'Was not able to save under:\n{os.path.join(self.saving_dir, fn)}\nNew name:\n{final_dir}')
-                break
+            os.makedirs(final_dir, exist_ok=True)
+            #raise MemoryError(f'Was not able to save the figure as \n{os.path.join(self.saving_dir, fn)} \n(probably due to length restrictions in the name)')
+            with open(os.path.join(final_dir, 'info.txt'), 'w') as txt_file:
+                txt_file.write(f'Was not able to save under:\n{os.path.join(self.saving_dir, fn)}\nNew name:\n{final_dir}')
 
         fn = os.path.join(final_dir, loc_fn)
-        if name_len_issues:
-            fn = os.path.join(final_dir[:-1],'0')
 
 
         if self.save_txt != '':

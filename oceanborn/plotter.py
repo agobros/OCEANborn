@@ -131,11 +131,12 @@ class Plotter():
 
         try:
             os.makedirs(final_dir, exist_ok=True)
-        except FileNotFoundError:
+        except:
+            loc_fn = f'figure_{counter}'
             while os.path.exists(os.path.join(self.saving_dir, loc_fn)):
-                loc_fn = f'figure_{counter}'
                 counter += 1
-
+                loc_fn = f'figure_{counter}'
+                
             final_dir = os.path.join(self.saving_dir, loc_fn)
             os.makedirs(final_dir, exist_ok=True)
             #raise MemoryError(f'Was not able to save the figure as \n{os.path.join(self.saving_dir, fn)} \n(probably due to length restrictions in the name)')

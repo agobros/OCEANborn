@@ -150,3 +150,13 @@ def test_no_latex():
         p.savefig(os.path.join('test_no_latex'))
     except Exception as e:
         pytest.fail(f"Plot method raised an exception: {e}")
+
+def test_long_name():
+    p = Plotter()
+    p.saving_dir = os.path.join('.', 'tests')
+    try:
+        fig, ax = p.genfig()
+        ax.plot([0,1], [0,1])
+        p.savefig("_".join([str(i) for i in range(1000)]))
+    except Exception as e:
+        pytest.fail(f"Plot method raised an exception: {e}")

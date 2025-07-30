@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "oceanborn"
-version = "0.4"
+version = "0.5"
 description = "This package contains the relevant classes to plot unified and consistent within the OCEAN Squids group at IBM Research Zurich."
 authors = [
   { name = "Sandro Agostini", email = "sandro.agostini@ibm.com" }

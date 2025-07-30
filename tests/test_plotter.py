@@ -7,6 +7,27 @@ def test_plotter_initialization():
     p = Plotter()
     assert p is not None
 
+def test_id():
+    p = Plotter()
+    p.fig_id = 'Test ID'
+    p.saving_dir = os.path.join('.', 'tests')
+    try:
+        for idx, marker in enumerate(p.markers):
+            x = np.array((range(-10,10)))*10 # type: ignore
+            y = [-4*idx+np.sin(i)+np.exp(np.abs(i)*1e-2) for i in x]
+            label = f'Marker {idx}'
+            plt.plot(x, y,f'--{marker}',label=label)
+        plt.legend(loc=7)
+        plt.xlim((-100,250))
+
+        plt.xlabel(r'Test xlabel $\si{\micro M/s}$ $\mathrm{\mu\Delta <}$')
+        plt.ylabel('Test ylabel')
+
+        p.savefig('Test_ID')
+    except Exception as e:
+        pytest.fail(f"Plot method raised an exception: {e}")
+
+
 def test_colors():
     p = Plotter()
     try:

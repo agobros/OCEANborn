@@ -1,13 +1,9 @@
 import os, matplotlib, json, shutil, subprocess, copy
 import matplotlib.pyplot as plt 
 from cycler import cycler
-import matplotlib.cm as cm
-from importlib import resources
-import numpy as np
 from matplotlib.figure import Figure
 from matplotlib.axes import Axes
-from numpy.typing import NDArray
-import numpy as np
+
 
 
 class Plotter():
@@ -41,6 +37,8 @@ class Plotter():
         self.saving_dir = os.path.join(os.getcwd(), 'figures') #saving directory for figures
         self.save_dict = {} #Will be saved as json in saving folder, if not empty
         self.save_txt = '' #Will be saved as json in saving folder, if not empty
+        self.fig_id = '' #Will be printed in the bottom right corner if provided
+        self.id_fontsize = 5 #Fs for fig_id
 
         self.print_infos = True #Bool if infos about saved figures should be printed
 
@@ -113,6 +111,9 @@ class Plotter():
         return fig, ax
 
     def savefig(self, fn:str = '') -> None:
+
+        if self.fig_id != '':
+            self.fig.text(1., 0., f"{self.fig_id}", ha='right', va='bottom', fontsize=self.id_fontsize,transform=self.fig.transFigure)
 
         if fn == '':
             counter = 0

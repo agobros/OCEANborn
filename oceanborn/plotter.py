@@ -11,7 +11,9 @@ from matplotlib.axes import Axes
 
 
 class Plotter:
-    def __init__(self, use_latex: bool = True):
+    def __init__(self, use_latex: bool = True, save_formats: tuple = ("png",)):
+
+        self.save_formats = save_formats #("pdf", "svg", "png")
 
         # Basic properties
         self.font_name = 'Arial'
@@ -103,8 +105,8 @@ class Plotter:
                 "#343434", "#36454F", "#353839", "#000000"
             ],
         }
-
-        self.custom_cycler = cycler(color=self.colors["cycler"])
+        self.color_palette = self.colors['cycler']
+        self.custom_cycler = cycler(color=self.color_palette)
 
     # --------------------------------------------------------------------------
 
@@ -150,7 +152,7 @@ class Plotter:
                 json.dump(self.save_dict, f, indent=4)
 
         # Save the figure formats
-        for ext in ("pdf", "svg", "png"):
+        for ext in self.save_formats:
             plt.savefig(f"{base}.{ext}")
 
         if self.print_infos:

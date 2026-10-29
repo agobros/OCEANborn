@@ -5,16 +5,19 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "oceanborn"
 version = "0.7"
-description = "This package contains the relevant classes to plot unified and consistent within the OCEAN Squids group at IBM Research Zurich."
+description = "Consistent, publication-ready Matplotlib styling and figure saving."
+readme = "README.md"
+requires-python = ">=3.11"
 authors = [
   { name = "Sandro Agostini", email = "sandro.agostini@ibm.com" }
 ]
 dependencies = [
   "matplotlib",
-  "numpy",
-  "pandas",
-  "seaborn"
+  "cycler"
 ]
+
+[project.optional-dependencies]
+test = ["pytest"]
 
 [tool.setuptools]
 include-package-data = true
@@ -22,6 +25,3 @@ include-package-data = true
 [tool.setuptools.packages.find]
 where = ["."]
 exclude = ["tests*", "examples*"]
-
-
-

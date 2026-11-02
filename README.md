@@ -60,10 +60,22 @@ the full tuple or mapping to change them.
 
 ## Colors and markers
 
-The default eight-color cycle uses vibrant blue, orange, teal, red, purple,
-sky blue, wine, and green shades. It is intended for categorical series, not
-as a continuous colormap. The colors are chosen to be more distinguishable for
-common forms of color-vision deficiency, but color alone should not be the only
-way important data is encoded. Use `plotter.color_palette` to
-inspect or replace the cycle, `plotter.greys` for neutral shades, and
-`plotter.markers` to access the suggested marker cycle.
+The default categorical color cycle is:
+
+| Order | Color | Hex |
+|---:|---|---|
+| 1 | Blue | `#1f78b4` |
+| 2 | Green | `#1b9e26` |
+| 3 | Orange-red | `#d93f02` |
+| 4 | Purple | `#ae42ec` |
+| 5 | Magenta | `#e7298a` |
+| 6 | Ochre | `#e6ab02` |
+| 7 | Brown | `#b4670f` |
+| 8 | Dark green | `#1A683D` |
+
+Reference lines use dark purple (`#542788`) for vertical lines and dark brown
+(`#6B4423`) for horizontal lines. The palette is for categorical series, not
+continuous data, and color alone should not be the only way important data is
+encoded. Use `plotter.color_palette` to inspect or replace the cycle,
+`plotter.greys` for neutral shades, and `plotter.markers` for the suggested
+marker cycle.

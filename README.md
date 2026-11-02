@@ -23,6 +23,21 @@ install only the package without test dependencies, use:
 python -m pip install .
 ```
 
+## Publish to PyPI
+
+The GitHub Actions workflow at `.github/workflows/publish.yml` tests and builds
+the wheel and source distribution, then publishes them when a GitHub Release is
+published. Configure a PyPI trusted publisher for project `oceanborn` with:
+
+- Owner: `agobros`
+- Repository: `OCEANborn`
+- Workflow filename: `publish.yml`
+- GitHub environment: `pypi`
+
+Create and publish a GitHub Release for the version declared in `pyproject.toml`
+to start the workflow. It runs the tests and builds the distributions before
+the separate publishing job receives them. No PyPI API token is needed.
+
 ## Quick start
 
 ```python

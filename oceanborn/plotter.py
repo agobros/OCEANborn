@@ -50,7 +50,7 @@ class Plotter:
         self.font_name = 'Arial'
         self.font_family = 'sans-serif'
         self.lw = 1.2
-        self.ms = 2.4
+        self.ms = 3
         self.label_size = 9
         self.fs = 8
 

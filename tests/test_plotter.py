@@ -43,7 +43,7 @@ def test_default_style_dimensions():
     p = Plotter(use_latex=False)
     assert p.label_size == 9
     assert p.lw == 1.2
-    assert p.ms == 2.4
+    assert p.ms == 3
     assert p.id_fontsize == 5
 
 def test_color_palette_updates_rcparams():
@@ -196,10 +196,10 @@ def test_plotter_initialization():
     p = Plotter()
     assert p is not None
 
-def test_id(tmp_path):
+def test_id():
     p = Plotter(use_latex=True)
     p.fig_id = 'Test ID'
-    p.saving_dir = str(tmp_path)
+    p.saving_dir = os.path.dirname(__file__)
     try:
         for idx, marker in enumerate(p.markers):
             x = np.array((range(-10,10)))*10 # type: ignore
@@ -238,7 +238,7 @@ def test_colors():
     except Exception as e:
         pytest.fail(f"Plot method raised an exception: {e}")
 
-def test_greys(tmp_path):
+def test_greys():
     p = Plotter()
     try:
         for idx, color in enumerate(p.greys):
@@ -250,7 +250,7 @@ def test_greys(tmp_path):
         plt.xlabel('Test xlabel')
         plt.ylabel('Test ylabel')
 
-        plt.savefig(tmp_path / 'test_greys.png', dpi=450)
+        plt.savefig(os.path.join(os.path.dirname(__file__), 'test_greys.png'), dpi=450)
         plt.close()
     except Exception as e:
         pytest.fail(f"Plot method raised an exception: {e}")
@@ -279,7 +279,7 @@ def test_vh_line(tmp_path):
     except Exception as e:
         pytest.fail(f"Plot method raised an exception: {e}")
 
-def test_sizes(tmp_path):
+def test_sizes():
     p = Plotter()
     try:
 
@@ -293,12 +293,12 @@ def test_sizes(tmp_path):
 
         plt.xlabel('Test xlabel')
         plt.ylabel('Test ylabel')
-        plt.savefig(tmp_path / 'test_sizes.png', dpi=450)
+        plt.savefig(os.path.join(os.path.dirname(__file__), 'test_sizes.png'), dpi=450)
         plt.close()
     except Exception as e:
         pytest.fail(f"Plot method raised an exception: {e}")
 
-def test_markers(tmp_path):
+def test_markers():
     p = Plotter(use_latex=True)
     try:
         for idx, marker in enumerate(p.markers):
@@ -312,7 +312,7 @@ def test_markers(tmp_path):
         plt.xlabel(unit_xlabel(p.use_latex))
         plt.ylabel('Test ylabel')
         
-        plt.savefig(tmp_path / 'test_markers.png', dpi=450)
+        plt.savefig(os.path.join(os.path.dirname(__file__), 'test_markers.png'), dpi=450)
         plt.close()
     except Exception as e:
         pytest.fail(f"Plot method raised an exception: {e}")
@@ -340,9 +340,9 @@ def test_save_fig(tmp_path):
         pytest.fail(f"Plot method raised an exception: {e}")
     
 
-def test_no_latex(tmp_path):
+def test_no_latex():
     p = Plotter()
-    p.saving_dir = str(tmp_path)
+    p.saving_dir = os.path.dirname(__file__)
     p.use_latex = False
     try:
         fig, ax = p.genfig()

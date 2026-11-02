@@ -80,9 +80,43 @@ class Plotter:
 
     def __str__(self) -> str:
         return (
-            'The OCEANborn plotter sets matplotlib.rcparams.\n'
-            'self.savefig(fn="") saves your figure in save_formats (PNG by default).\n'
-            'If save_dict and/or save_txt are set, they are saved alongside.'
+            "OCEANborn Plotter\n"
+            "=================\n"
+            "Creates publication-style Matplotlib figures and applies its style "
+            "globally.\n\n"
+            "Quick start:\n"
+            "  p = Plotter()  # LaTeX off; PNG output\n"
+            "  fig, ax = p.genfig()\n"
+            "  ax.plot(x, y, label='Data')\n"
+            "  ax.legend()\n"
+            "  p.savefig('my_plot')\n\n"
+            "Figure creation and saving:\n"
+            "  - p.genfig(*args, **kwargs) wraps matplotlib.pyplot.subplots.\n"
+            "  - p.fig and p.ax access the plotter figure and its current axes.\n"
+            "  - p.savefig(name) writes directly into p.saving_dir and closes "
+            "the saved figure.\n"
+            "  - A figure created by p.genfig() is preferred; otherwise the "
+            "current pyplot figure is saved.\n"
+            "  - If name is omitted, an unused new_plot_N name is chosen. "
+            "Named files are overwritten.\n"
+            "  - p.save_formats accepts a format name or sequence; current "
+            f"formats: {', '.join(self.save_formats)}.\n"
+            "  - Set p.save_dict or p.save_txt to write JSON or text sidecars.\n"
+            "  - p.saving_dir defaults to a 'figures' folder in the working "
+            "directory.\n\n"
+            "Style and helpers:\n"
+            f"  - Current figure size: {self.figsize[0]:.2f} x "
+            f"{self.figsize[1]:.2f} inches; DPI: {self.dpi}.\n"
+            "  - Style settings are global. Reassign attributes such as "
+            "p.fs, p.lw, p.ms, p.figsize, or p.font_name to update them.\n"
+            "  - p.color_palette is the categorical color cycle; p.greys, "
+            "p.markers, p.vline_color, and p.hline_color provide helpers.\n"
+            f"  - LaTeX is {'enabled' if self.use_latex else 'disabled'}; "
+            "enable with Plotter(use_latex=True) if pdflatex and required "
+            "packages are installed.\n"
+            "  - Use 'with Plotter() as p:' to close figures created in the "
+            "block on exit.\n"
+            "  - NaturePlotter and IEEEPlotter provide alternate presets."
         )
 
     # --------------------------------------------------------------------------
@@ -247,11 +281,17 @@ class Plotter:
     def _init_colors(self):
         self.colors = {
             "cycler": [
-                "#0077BB", "#EE7733", "#009988", "#CC3311",
-                "#AA4499", "#33BBEE", "#882255", "#228833"
+                "#1f78b4",
+                "#1b9e26",
+                "#d93f02",
+                "#ae42ec",
+                "#e7298a",
+                "#e6ab02",
+                "#b4670f",
+                "#1A683D",
             ],
-            "vline": "#E7D27C",
-            "hline": "#CC9999",
+            "vline": "#542788",
+            "hline": "#6B4423",
             "greys": [
                 "#F5F5F5", "#DCDCDC", "#D3D3D3", "#C0C0C0", "#A9A9A9",
                 "#808080", "#696969", "#778899", "#708090", "#2F4F4F",

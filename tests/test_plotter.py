@@ -23,6 +23,18 @@ def test_public_plotter_helpers():
     assert p.hline_color.startswith("#")
     assert len(p.markers) > 0
 
+def test_plotter_string_describes_usage_and_current_settings():
+    p = Plotter(use_latex=False, save_formats=("png", "pdf"))
+    description = str(p)
+
+    assert "Quick start:" in description
+    assert "p.genfig(*args, **kwargs)" in description
+    assert "p.savefig(name)" in description
+    assert "png, pdf" in description
+    assert "DPI: 450" in description
+    assert "LaTeX is disabled" in description
+    assert "p.color_palette" in description
+
 def test_default_figure_size_is_a6_landscape():
     p = Plotter(use_latex=False)
     assert p.figsize == pytest.approx((148 / 25.4, 105 / 25.4))
@@ -212,6 +224,8 @@ def test_colors():
             x = np.array((range(-1000,1000)))/10 # type: ignore
             y = [-4*color_idx+np.sin(i)+np.exp(np.abs(i)*1e-2) for i in x]
             plt.plot(x, y ,label=f'Color {color_idx}')
+        plt.axvline(0, color=p.colors["vline"], label="Vertical line")
+        plt.axhline(0, color=p.colors["hline"], label="Horizontal line")
         plt.legend(loc=7)
         plt.xlim((-100,250))
 

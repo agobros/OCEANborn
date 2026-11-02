@@ -4,12 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "oceanborn"
-version = "0.7"
+version = "1.0"
 description = "Consistent, publication-ready Matplotlib styling and figure saving."
 readme = "README.md"
+license = "MIT"
 requires-python = ">=3.11"
 authors = [
-  { name = "Sandro Agostini", email = "sandro.agostini@ibm.com" }
+  { name = "Sandro Agostini", email = "sandro.agostini@hotmail.ch" }
 ]
 dependencies = [
   "matplotlib",
